@@ -3,7 +3,7 @@
 
 name: Node.js CI
 
-on: push
+on: [push, pull_request]
 
 
 jobs:
@@ -12,19 +12,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
     - name: Installing npm
-      uses: borales/actions-yarn@v2.3.0
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v2
       with:
         node-version: '14'
-        cache: 'npm'
-        cmd: install # will run `yarn install` command
-    - uses: borales/actions-yarn@v2.3.0
-      with:
-        cmd: build # will run `yarn build` command
-    - uses: borales/actions-yarn@v2.3.0
-      with:
-        cmd: test # will run `yarn test` command
+    - run: |
+        npm install yarn
+        yarn install -y
+    - run: yarn test
 
   deploy:
     needs: [test]
