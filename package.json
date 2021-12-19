@@ -6,7 +6,7 @@
     "node": "14.x"
   },
   "scripts": {
-    "start-client": "react-scripts start",
+    "start-dev": "react-scripts start",
     "start": "yarn run build && (cd server && yarn install -y && yarn start)",
     "build": "react-scripts build",
     "test": "react-scripts test",

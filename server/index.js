@@ -5,7 +5,7 @@ const app = express();
 
 let port = process.env.PORT;
 
-// add middlewares
+// add middleware
 app.use(express.static(path.join(__dirname, "..", "build")));
 app.use(express.static("build"));
 
